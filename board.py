@@ -43,14 +43,18 @@ class Board():
 
     def __validate_entries__(self,col_valid,row_valid):
         dir_valid = ['RIGHT', 'DOWN']
-        cordnate, direction = input('\nPlease type a starting cordinate and either if you want it to go down or right from that point.\nExample: A9 RIGHT : ').upper().split()
-        while cordnate[0] not in col_valid:
-            cordnate[0] = input(f'Invalid column. Only the following entries are allowed: {col_valid} : ').upper()
-        while cordnate[1] not in row_valid:
-            cordnate[1] = input(f'Invalid column. Only the following entries are allowed: {row_valid} : ').upper()
-        while direction not in dir_valid:
-            direction = input(f'Invalid column. Only the following entries are allowed: {dir_valid} : ').upper()
-        return cordnate, direction
+        try:
+            cordnate, direction = input('\nPlease type a starting cordinate and either if you want it to go down or right from that point.\nExample: A9 RIGHT : ').upper().split()
+            while cordnate[0] not in col_valid:
+                cordnate[0] = input(f'Invalid column. Only the following entries are allowed: {col_valid} : ').upper()
+            while cordnate[1] not in row_valid:
+                cordnate[1] = input(f'Invalid column. Only the following entries are allowed: {row_valid} : ').upper()
+            while direction not in dir_valid:
+                direction = input(f'Invalid column. Only the following entries are allowed: {dir_valid} : ').upper()
+            return cordnate, direction
+        except:
+            print('Invalid Entry')
+            return self.__validate_entries__(col_valid,row_valid)
 
     def __add_ship_to_board__(self,cords, direction, col, row, length):
         while len(cords) < length:
@@ -89,6 +93,4 @@ class Board():
         return board
 
 board = Board()
-print(board)
-input('ready')
 board.prep_board()
