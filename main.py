@@ -1,5 +1,7 @@
+from battleship_game import BattleshipGame
+
 def main():
-    pass
+    BattleshipGame()
 
 if __name__ == '__main__':
     main()

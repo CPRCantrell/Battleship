@@ -1,9 +1,15 @@
-from os import system, name
+import os
+import sys
 
 def clear_screen():
     # for windows
-    if name == 'nt':
-        system('cls')
+    if os.name == 'nt':
+        os.system('cls')
     # for mac and linux(here, os.name is 'posix')
     else:
-        system('clear')
+        os.system('clear')
+
+def clear_line(lines = 1):
+    for line in range(lines):
+        sys.stdout.write("\033[F")
+        sys.stdout.write("\033[K")
