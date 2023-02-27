@@ -17,6 +17,9 @@ class Board():
         gtool.clear_screen()
         print(f'\n\n{self}\n')
 
+    def try_to_hit(self,board):
+        pass
+
     def __set_ships__(self,unset_boat):
         while len(unset_boat) != 0:
             gtool.clear_screen()
