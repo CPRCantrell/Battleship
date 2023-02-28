@@ -1,8 +1,23 @@
+import game_tools as gtool
 class Boats:
     def __init__(self,name:str, length:int) -> None:
         self.name = name
         self.length = length
-        self.body_cordnates = []
+        self.body_coordinates = []
+        self.health = length
+        self.sunk = False
+
+    def hit(self, coord, ship_being_struck = False):
+        for hit in self.body_coordinates:
+            if coord == hit:
+                if ship_being_struck:
+                    self.health -= 1
+                    if self.health == 0:
+                        self.sunk = True
+                        input(f'You sunk my {self}!!')
+                        gtool.clear_line()
+                return True
+        return False
 
     def __str__(self) -> str:
         return self.name.title()
