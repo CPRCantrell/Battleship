@@ -103,7 +103,7 @@ class Player():
         return self.name
 
     def __verify_coords__(self,prompt):
-        user_input = input(prompt)
+        user_input = input(prompt).strip()
         while user_input == '' or len(user_input)<2 or len(user_input)>3:
             gtool.clear_line()
             user_input = input(f'Invade Entry: {prompt}')
@@ -122,7 +122,7 @@ class Player():
         return row, col
 
     def __verify_direction__(self, prompt):
-        user_input = input(prompt).upper()
+        user_input = input(prompt).upper().strip()
         valid_directions = ['UP', 'RIGHT', 'DOWN', 'LEFT']
 
         while user_input not in valid_directions:
