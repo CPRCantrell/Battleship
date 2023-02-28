@@ -65,8 +65,9 @@ class Player():
             print(f'{index}) {boat}')
             index += 1
 
+        print()
         while index not in [0,1,2,3]:
-            try: index = (int(input('\nWhich boat would you like to change: '))-1)
+            try: index = (int(input('Which boat would you like to change: '))-1)
             except:
                 gtool.clear_line()
                 print('Invalid Entry: Valid entries are: [0,1,2,3] : ',end='')
@@ -80,8 +81,9 @@ class Player():
         print('O'*current_boat.length, f' - {current_boat}')
         self.board.clear_ship(index)
 
+        print()
         while True:
-            row, col = self.__verify_coords__(f'\nSelect a coordinate for your {current_boat}: [Ex. A10] : ')
+            row, col = self.__verify_coords__(f'Select a coordinate for your {current_boat}: [Ex. A10] : ')
             direction = self.__verify_direction__(f'From {col}{row}, which out of the 4 directions do you want your {current_boat} to go: [Ex. Left] : ')
 
             try: self.board.set_boat_coords(index, row, col, direction)
