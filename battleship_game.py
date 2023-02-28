@@ -38,8 +38,8 @@ class BattleshipGame:
     def set_names(self):
         print('\n\nFirst things first lets get your name!\n\n')
 
-        player_one = Player(input('Player 1. Please input your name: ').title())
-        player_two = Player(input('Player 2. Please input your name: ').title())
+        player_one = Player(self.__vadid_name__('Player 1. Please input your name: '))
+        player_two = Player(self.__vadid_name__('Player 2. Please input your name: '))
         self.players = [player_one,player_two]
 
     def set_boards(self):
@@ -73,7 +73,7 @@ class BattleshipGame:
                 input(f'The turn is now being passed over to {opponent}. {opponent}, when you are ready press enter.')
 
     def display_winner(self):
-        gtool.clear_line()
+        gtool.clear_screen()
         print(f'{self.players[0]} board:{self.players[0].board}\n')
         print(f'{self.players[1]} board:{self.players[1].board}\n')
         print(f'{f"{self.players[0]}" if self.players[1] else f"{self.players[1]}"}! You are the winner!')
@@ -92,8 +92,8 @@ class BattleshipGame:
 
     def __validate_Y_N__(self,prompt):
             user_input = 'playerplayer'
-            valid_yes = ['YES', 'YUP', 'YEA', 'Y', 'INDEED', 'I DO']
-            valid_no = ['NO', 'NOPE', 'Na', 'N', 'I AM GOOD']
+            valid_yes = ['YES', 'YAS', 'YUP', 'YEP', 'YEA', 'Y', 'INDEED', 'I DO']
+            valid_no = ['NO', 'NOPE', 'NAH', 'N', 'I AM GOOD','I\'M GOOD']
 
             print()
             while user_input not in valid_yes and user_input not in valid_no:
@@ -106,3 +106,17 @@ class BattleshipGame:
                 return True
             else:
                 return False
+
+    def __vadid_name__(self, prompt):
+        while True:
+            user_input = input(prompt).strip()
+
+            if user_input == '':
+                print('INVALID ENTRY : You gotta put something for your name : ', end='')
+                continue
+            elif len(user_input) < 2:
+                print('INVALID ENTRY : A single chatacter name -_- come on : ', end='')
+                continue
+
+            print(f'{prompt}{user_input.title()}')
+            return user_input.title()
