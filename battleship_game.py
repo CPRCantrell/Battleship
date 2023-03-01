@@ -12,7 +12,7 @@ class BattleshipGame:
             self.setup_players()
             self.game_loop()
             self.display_winner()
-            play_again = self.__validate_Y_N__('Would you like to play again: ')
+            play_again = gtool.validate_Y_N('Would you like to play again: ')
 
     def display_welcome(self):
         welcome = '''
@@ -85,31 +85,16 @@ class BattleshipGame:
             gtool.clear_screen()
             print(f'Your Board:{player.board}')
 
-            if self.__validate_Y_N__('Any last minute changes you want to make: '):
+            if gtool.validate_Y_N('Any last minute changes you want to make: '):
                 gtool.clear_line()
                 player.change_ship_coordinates()
             else: break
 
-    def __validate_Y_N__(self,prompt):
-            user_input = 'playerplayer'
-            valid_yes = ['YES', 'YAS', 'YUP', 'YEP', 'YEA', 'Y', 'INDEED', 'I DO']
-            valid_no = ['NO', 'NOPE', 'NAH', 'N', 'I AM GOOD','I\'M GOOD']
-
-            print()
-            while user_input not in valid_yes and user_input not in valid_no:
-                user_input = input(prompt).upper()
-                gtool.clear_line()
-                if user_input not in valid_yes and user_input not in valid_no:
-                    print(f'Invalid Entry: Valid entry: [Y,N] : ',end='')
-
-            if user_input in valid_yes:
-                return True
-            else:
-                return False
-
     def __vadid_name__(self, prompt):
         while True:
             user_input = input(prompt).strip()
+            if gtool.check_keyword(user_input):
+                continue
 
             if user_input == '':
                 print('INVALID ENTRY : You gotta put something for your name : ', end='')

@@ -103,31 +103,56 @@ class Player():
         return self.name
 
     def __verify_coords__(self,prompt):
-        user_input = input(prompt).strip()
-        while user_input == '' or len(user_input)<2 or len(user_input)>3:
+        while True:
+            key = False
+            user_input = input(prompt).strip()
             gtool.clear_line()
-            user_input = input(f'Invade Entry: {prompt}')
-        col = user_input[0].upper()
-        row = user_input[1:]
+            if gtool.check_keyword(user_input):
+                    continue
 
-        while col not in self.board.col:
-            gtool.clear_line()
-            col = input(f'[{col}] is an invalid column. Enter one of the following : {self.board.col} : ')
+            while user_input == '' or len(user_input)<2 or len(user_input)>3:
+                user_input = input(f'Invade Entry: {prompt}').strip()
+                gtool.clear_line()
+                if gtool.check_keyword(user_input):
+                    key = True
+                    break
 
-        while row not in self.board.row:
-            gtool.clear_line()
-            row = input(f'[{row}] is an invalid row. Enter one of the following : {self.board.row} : ')
+            col = user_input[0].upper()
+            row = user_input[1:]
 
-        gtool.clear_line()
-        return row, col
+            while col not in self.board.col:
+                col = input(f'[{col}] is an invalid column. Enter one of the following : {self.board.col} : ')
+                gtool.clear_line()
+                if gtool.check_keyword(user_input):
+                    key = True
+                    break
+
+            while row not in self.board.row:
+                row = input(f'[{row}] is an invalid row. Enter one of the following : {self.board.row} : ')
+                gtool.clear_line()
+                if gtool.check_keyword(user_input):
+                    key = True
+                    break
+
+            if key: continue
+            return row, col
 
     def __verify_direction__(self, prompt):
-        user_input = input(prompt).upper().strip()
-        valid_directions = ['UP', 'RIGHT', 'DOWN', 'LEFT']
-
-        while user_input not in valid_directions:
+        while True:
+            key = False
+            user_input = input(prompt).upper().strip()
             gtool.clear_line()
-            user_input = input(f'Invade Entry: {prompt}').upper()
+            valid_directions = ['UP', 'RIGHT', 'DOWN', 'LEFT']
 
-        gtool.clear_line()
-        return user_input
+            if gtool.check_keyword(user_input):
+                continue
+
+            while user_input not in valid_directions:
+                user_input = input(f'Invade Entry: {prompt}').upper()
+                gtool.clear_line()
+                if gtool.check_keyword(user_input):
+                    key = True
+                    break
+
+            if key: continue
+            return user_input
