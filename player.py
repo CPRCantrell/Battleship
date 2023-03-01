@@ -123,14 +123,14 @@ class Player():
             while col not in self.board.col:
                 col = input(f'[{col}] is an invalid column. Enter one of the following : {self.board.col} : ')
                 gtool.clear_line()
-                if gtool.check_keyword(user_input):
+                if gtool.check_keyword(col):
                     key = True
                     break
 
             while row not in self.board.row:
                 row = input(f'[{row}] is an invalid row. Enter one of the following : {self.board.row} : ')
                 gtool.clear_line()
-                if gtool.check_keyword(user_input):
+                if gtool.check_keyword(row):
                     key = True
                     break
 

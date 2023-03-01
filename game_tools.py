@@ -30,13 +30,13 @@ def __quit_game__():
 
 def validate_Y_N(prompt):
     user_input = 'playerplayer'
-    valid_yes = ['YES', 'YAS', 'YUP', 'YEP', 'YEA', 'Y', 'INDEED', 'I DO']
+    valid_yes = ['YES', 'YAS', 'YUP', 'YEP', 'YEA', 'Y', 'INDEED', 'I DO', 'QUIT']
     valid_no = ['NO', 'NOPE', 'NAH', 'N', 'I AM GOOD','I\'M GOOD']
 
     print()
     while user_input not in valid_yes and user_input not in valid_no:
-        user_input = input(prompt).upper()
         clear_line()
+        user_input = input(prompt).upper()
         if check_keyword(user_input):
             continue
         if user_input not in valid_yes and user_input not in valid_no:

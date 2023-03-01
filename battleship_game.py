@@ -93,6 +93,7 @@ class BattleshipGame:
     def __vadid_name__(self, prompt):
         while True:
             user_input = input(prompt).strip()
+            gtool.clear_line()
             if gtool.check_keyword(user_input):
                 continue
 
